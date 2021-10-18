@@ -1,9 +1,9 @@
 <?php
 
-namespace Czemu\NovaCalendarTool\Http\Middleware;
+namespace Plank\NovaCalendarTool\Http\Middleware;
 
 use Laravel\Nova\Nova;
-use Czemu\NovaCalendarTool\NovaCalendarTool;
+use Plank\NovaCalendarTool\NovaCalendarTool;
 
 class Authorize
 {

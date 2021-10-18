@@ -6,9 +6,9 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Nova\Events\ServingNova;
 use Laravel\Nova\Nova;
-use Czemu\NovaCalendarTool\Http\Middleware\Authorize;
-use Czemu\NovaCalendarTool\Models\Event;
-use Czemu\NovaCalendarTool\Observers\EventObserver;
+use Plank\NovaCalendarTool\Http\Middleware\Authorize;
+use Plank\NovaCalendarTool\Models\Event;
+use Plank\NovaCalendarTool\Observers\EventObserver;
 
 class ToolServiceProvider extends ServiceProvider
 {
@@ -58,12 +58,12 @@ class ToolServiceProvider extends ServiceProvider
 
         Route::middleware(['nova', Authorize::class])
                 ->prefix('nova-vendor/nova-calendar-tool')
-                ->namespace('Czemu\NovaCalendarTool\Http\Controllers')
+                ->namespace('Plank\NovaCalendarTool\Http\Controllers')
                 ->group(__DIR__.'/../routes/api.php');
 
         $this->commands([
-//            \Czemu\NovaCalendarTool\Console\Commands\ImportEvents::class,
-//            \Czemu\NovaCalendarTool\Console\Commands\ExportEvents::class
+//            \Plank\NovaCalendarTool\Console\Commands\ImportEvents::class,
+//            \Plank\NovaCalendarTool\Console\Commands\ExportEvents::class
         ]);
     }
 
