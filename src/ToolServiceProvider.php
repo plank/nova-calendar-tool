@@ -1,6 +1,6 @@
 <?php
 
-namespace Czemu\NovaCalendarTool;
+namespace Plank\NovaCalendarTool;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
@@ -62,8 +62,8 @@ class ToolServiceProvider extends ServiceProvider
                 ->group(__DIR__.'/../routes/api.php');
 
         $this->commands([
-            \Czemu\NovaCalendarTool\Console\Commands\ImportEvents::class,
-            \Czemu\NovaCalendarTool\Console\Commands\ExportEvents::class
+//            \Czemu\NovaCalendarTool\Console\Commands\ImportEvents::class,
+//            \Czemu\NovaCalendarTool\Console\Commands\ExportEvents::class
         ]);
     }
 

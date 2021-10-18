@@ -1,5 +1,5 @@
 {
-    "name": "czemu/nova-calendar-tool",
+    "name": "plank/nova-calendar-tool",
     "description": "Calendar tool for Laravel Nova.",
     "keywords": [
         "laravel",
@@ -12,6 +12,10 @@
             "name": "Paweł Dymek",
             "email": "pawel.dymek@gmail.com",
             "homepage": "https://paweldymek.com/"
+        },
+        {
+            "name": "Evan Dimopoulos",
+            "email": "evan.dimopoulos@plankdesign.com"
         }
     ],
     "require": {
@@ -20,13 +24,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Czemu\\NovaCalendarTool\\": "src/"
+            "Plank\\NovaCalendarTool\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Czemu\\NovaCalendarTool\\ToolServiceProvider"
+                "Plank\\NovaCalendarTool\\ToolServiceProvider"
             ]
         }
     },
