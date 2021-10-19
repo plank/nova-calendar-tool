@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="card py-6 px-6">
-            <FullCalendar ref="fullCalendar" :options="calendarOptions" />
+            <FullCalendar ref="fullCalendar" :options="calendarOptions"/>
         </div>
 
         <transition name="fade">

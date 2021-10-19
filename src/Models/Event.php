@@ -22,7 +22,8 @@ class Event extends Model
             case 'update':
                 $rules = [
                     'title' => 'required',
-                    'start' => 'required|date',
+                    'description' => 'string',
+                    'start' => 'required|date|after_or_equal:now',
                     'end' => 'required|date|after_or_equal:start'
                 ];
 

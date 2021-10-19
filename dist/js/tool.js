@@ -30817,13 +30817,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'EventModal',
     props: ['currentEvent', 'currentDate'],
     data: function data() {
+        console.log(this.currentEvent);
         return {
             title: this.currentEvent !== null ? this.currentEvent.event.title : '',
+            description: this.currentEvent !== null ? this.currentEvent.event.description : '',
             start: moment(this.currentEvent !== null ? this.currentEvent.event.start : this.currentDate.date).format('YYYY-MM-DD HH:mm:ss'),
             end: this.currentEvent !== null ? moment(this.currentEvent.event.end).format('YYYY-MM-DD HH:mm:ss') : moment(this.currentDate.date).add(1, 'hour').format('YYYY-MM-DD HH:mm:ss')
         };
@@ -30857,6 +30862,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             var data = {
                 title: this.title,
+                description: this.description,
                 start: this.start,
                 end: this.end
             };
@@ -30901,236 +30907,265 @@ var render = function() {
   return _c("modal", {
     attrs: { classWhitelist: "flatpickr-calendar" },
     on: { "modal-close": _vm.handleClose },
-    scopedSlots: _vm._u(
-      [
-        {
-          key: "default",
-          fn: function(props) {
-            return _c(
-              "form",
-              {
-                staticClass: "bg-white rounded-lg shadow-lg overflow-hidden",
-                staticStyle: { width: "460px" },
-                on: {
-                  submit: function($event) {
-                    $event.preventDefault()
-                    return _vm.handleSave.apply(null, arguments)
-                  }
+    scopedSlots: _vm._u([
+      {
+        key: "default",
+        fn: function(props) {
+          return _c(
+            "form",
+            {
+              staticClass: "bg-white rounded-lg shadow-lg overflow-hidden",
+              staticStyle: { width: "920px" },
+              on: {
+                submit: function($event) {
+                  $event.preventDefault()
+                  return _vm.handleSave.apply(null, arguments)
                 }
-              },
-              [
-                _vm._t(
-                  "default",
-                  function() {
-                    return [
-                      _c(
-                        "div",
-                        { staticClass: "p-8" },
-                        [
-                          !_vm.currentEvent
-                            ? _c(
-                                "heading",
-                                { staticClass: "mb-6", attrs: { level: 2 } },
-                                [_vm._v(_vm._s(_vm.__("Create Event")))]
-                              )
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _vm.currentEvent
-                            ? _c(
-                                "heading",
-                                { staticClass: "mb-6", attrs: { level: 2 } },
-                                [_vm._v(_vm._s(_vm.__("Edit Event")))]
-                              )
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            { staticClass: "border-b border-40 pb-4" },
-                            [
-                              _c(
-                                "label",
-                                {
-                                  staticClass: "mb-2 text-80 leading-tight",
-                                  attrs: { for: "title" }
-                                },
-                                [_vm._v("Title:")]
-                              ),
-                              _vm._v(" "),
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.title,
-                                    expression: "title"
-                                  }
-                                ],
-                                staticClass:
-                                  "w-full form-control form-input form-input-bordered",
-                                attrs: { name: "title" },
-                                domProps: { value: _vm.title },
-                                on: {
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.title = $event.target.value
-                                  }
-                                }
-                              })
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            { staticClass: "border-b border-40 py-4" },
-                            [
-                              _c(
-                                "label",
-                                {
-                                  staticClass: "mb-2 text-80 leading-tight",
-                                  attrs: { for: "start" }
-                                },
-                                [_vm._v("Start:")]
-                              ),
-                              _vm._v(" "),
-                              _c("date-time-picker", {
-                                staticClass:
-                                  "w-full form-control form-input form-input-bordered",
-                                attrs: { name: "start", autocomplete: "off" },
-                                on: { change: _vm.changeStart },
-                                model: {
-                                  value: _vm.start,
-                                  callback: function($$v) {
-                                    _vm.start = $$v
-                                  },
-                                  expression: "start"
-                                }
-                              })
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            { staticClass: "border-b border-40 py-4" },
-                            [
-                              _c(
-                                "label",
-                                {
-                                  staticClass: "mb-2 text-80",
-                                  attrs: { for: "end" }
-                                },
-                                [_vm._v("End:")]
-                              ),
-                              _vm._v(" "),
-                              _c("date-time-picker", {
-                                staticClass:
-                                  "w-full form-control form-input form-input-bordered",
-                                attrs: { name: "end", autocomplete: "off" },
-                                on: { change: _vm.changeEnd },
-                                model: {
-                                  value: _vm.end,
-                                  callback: function($$v) {
-                                    _vm.end = $$v
-                                  },
-                                  expression: "end"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ]
+              }
+            },
+            [
+              _c(
+                "div",
+                {
+                  attrs: {
+                    slot: "body",
+                    uppercaseMode: _vm.uppercaseMode,
+                    mode: _vm.mode
                   },
-                  { uppercaseMode: _vm.uppercaseMode, mode: _vm.mode }
-                ),
-                _vm._v(" "),
-                _c("div", { staticClass: "btn-wrapper bg-30 px-6 py-3" }, [
-                  _vm.currentEvent
-                    ? _c(
-                        "button",
-                        {
+                  slot: "body"
+                },
+                [
+                  _c(
+                    "div",
+                    { staticClass: "p-8" },
+                    [
+                      !_vm.currentEvent
+                        ? _c(
+                            "heading",
+                            { staticClass: "mb-6", attrs: { level: 2 } },
+                            [_vm._v(_vm._s(_vm.__("Create Event")))]
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.currentEvent
+                        ? _c(
+                            "heading",
+                            { staticClass: "mb-6", attrs: { level: 2 } },
+                            [_vm._v(_vm._s(_vm.__("Edit Event")))]
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "border-b border-40 pb-4" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass: "mb-2 text-80 leading-tight",
+                            attrs: { for: "title" }
+                          },
+                          [_vm._v("Title:")]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.title,
+                              expression: "title"
+                            }
+                          ],
                           staticClass:
-                            "btn btn-default btn-danger delete-event",
-                          attrs: { type: "button" },
+                            "w-full form-control form-input form-input-bordered",
+                          attrs: { name: "title" },
+                          domProps: { value: _vm.title },
                           on: {
-                            click: function($event) {
-                              $event.preventDefault()
-                              return _vm.handleDelete.apply(null, arguments)
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.title = $event.target.value
                             }
                           }
-                        },
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "border-b border-40 py-4" },
                         [
                           _c(
-                            "svg",
+                            "label",
                             {
-                              staticClass: "fill-current",
-                              attrs: {
-                                xmlns: "http://www.w3.org/2000/svg",
-                                width: "20",
-                                height: "20",
-                                viewBox: "0 0 20 20",
-                                "aria-labelledby": "delete",
-                                role: "presentation"
-                              }
+                              staticClass: "mb-2 text-80 leading-tight",
+                              attrs: { for: "start" }
                             },
-                            [
-                              _c("path", {
-                                attrs: {
-                                  "fill-rule": "nonzero",
-                                  d:
-                                    "M6 4V2a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2h5a1 1 0 0 1 0 2h-1v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6H1a1 1 0 1 1 0-2h5zM4 6v12h12V6H4zm8-2V2H8v2h4zM8 8a1 1 0 0 1 1 1v6a1 1 0 0 1-2 0V9a1 1 0 0 1 1-1zm4 0a1 1 0 0 1 1 1v6a1 1 0 0 1-2 0V9a1 1 0 0 1 1-1z"
-                                }
-                              })
-                            ]
-                          )
-                        ]
-                      )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn text-80 font-normal h-9 px-3 btn-link",
-                      attrs: { type: "button" },
-                      on: {
-                        click: function($event) {
-                          $event.preventDefault()
-                          return _vm.handleClose.apply(null, arguments)
-                        }
-                      }
-                    },
-                    [_vm._v(_vm._s(_vm.__("Cancel")))]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      ref: "saveButton",
-                      staticClass: "btn btn-default btn-primary ml-3",
-                      attrs: { type: "submit" },
-                      on: {
-                        click: function($event) {
-                          $event.preventDefault()
-                          return _vm.handleSave.apply(null, arguments)
-                        }
-                      }
-                    },
-                    [_vm._v(_vm._s(_vm.__("Save")))]
+                            [_vm._v("Start:")]
+                          ),
+                          _vm._v(" "),
+                          _c("date-time-picker", {
+                            staticClass:
+                              "w-full form-control form-input form-input-bordered",
+                            attrs: { name: "start", autocomplete: "off" },
+                            on: { change: _vm.changeStart },
+                            model: {
+                              value: _vm.start,
+                              callback: function($$v) {
+                                _vm.start = $$v
+                              },
+                              expression: "start"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "border-b border-40 py-4" },
+                        [
+                          _c(
+                            "label",
+                            {
+                              staticClass: "mb-2 text-80",
+                              attrs: { for: "end" }
+                            },
+                            [_vm._v("End:")]
+                          ),
+                          _vm._v(" "),
+                          _c("date-time-picker", {
+                            staticClass:
+                              "w-full form-control form-input form-input-bordered",
+                            attrs: { name: "end", autocomplete: "off" },
+                            on: { change: _vm.changeEnd },
+                            model: {
+                              value: _vm.end,
+                              callback: function($$v) {
+                                _vm.end = $$v
+                              },
+                              expression: "end"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "border-b border-40 pb-4" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass: "mb-2 text-80 leading-tight",
+                            attrs: { for: "description" }
+                          },
+                          [_vm._v("Description:")]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.description,
+                              expression: "description"
+                            }
+                          ],
+                          staticClass:
+                            "w-full form-control form-input form-input-bordered",
+                          attrs: { name: "description" },
+                          domProps: { value: _vm.description },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.description = $event.target.value
+                            }
+                          }
+                        })
+                      ])
+                    ],
+                    1
                   )
-                ])
-              ],
-              2
-            )
-          }
+                ]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "btn-wrapper bg-30 px-6 py-3" }, [
+                _vm.currentEvent
+                  ? _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-default btn-danger delete-event",
+                        attrs: { type: "button" },
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            return _vm.handleDelete.apply(null, arguments)
+                          }
+                        }
+                      },
+                      [
+                        _c(
+                          "svg",
+                          {
+                            staticClass: "fill-current",
+                            attrs: {
+                              xmlns: "http://www.w3.org/2000/svg",
+                              width: "20",
+                              height: "20",
+                              viewBox: "0 0 20 20",
+                              "aria-labelledby": "delete",
+                              role: "presentation"
+                            }
+                          },
+                          [
+                            _c("path", {
+                              attrs: {
+                                "fill-rule": "nonzero",
+                                d:
+                                  "M6 4V2a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2h5a1 1 0 0 1 0 2h-1v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6H1a1 1 0 1 1 0-2h5zM4 6v12h12V6H4zm8-2V2H8v2h4zM8 8a1 1 0 0 1 1 1v6a1 1 0 0 1-2 0V9a1 1 0 0 1 1-1zm4 0a1 1 0 0 1 1 1v6a1 1 0 0 1-2 0V9a1 1 0 0 1 1-1z"
+                              }
+                            })
+                          ]
+                        )
+                      ]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn text-80 font-normal h-9 px-3 btn-link",
+                    attrs: { type: "button" },
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        return _vm.handleClose.apply(null, arguments)
+                      }
+                    }
+                  },
+                  [_vm._v(_vm._s(_vm.__("Cancel")))]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    ref: "saveButton",
+                    staticClass: "btn btn-default btn-primary ml-3",
+                    attrs: { type: "submit" },
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        return _vm.handleSave.apply(null, arguments)
+                      }
+                    }
+                  },
+                  [_vm._v(_vm._s(_vm.__("Save")))]
+                )
+              ])
+            ]
+          )
         }
-      ],
-      null,
-      true
-    )
+      }
+    ])
   })
 }
 var staticRenderFns = []
