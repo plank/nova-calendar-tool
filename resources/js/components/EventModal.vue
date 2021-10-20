@@ -14,6 +14,7 @@
                         <label for="title" class="mb-2 text-80 leading-tight">Title:</label>
                         <input v-model="title" name="title" class="w-full form-control form-input form-input-bordered" />
                     </div>
+                    <small>Time Picker is set to whatever your local timezone is. It will be saved as the site's timezone</small>
                     <div class="border-b border-40 py-4">
                         <label for="start" class="mb-2 text-80 leading-tight">Start:</label>
                         <date-time-picker @change="changeStart" v-model="start" name="start" class="w-full form-control form-input form-input-bordered" autocomplete="off" />
@@ -24,7 +25,7 @@
                     </div>
                     <div class="border-b border-40 pb-4">
                         <label for="description" class="mb-2 text-80 leading-tight">Description:</label>
-                        <input v-model="description" name="description" class="w-full form-control form-input form-input-bordered" />
+                        <textarea v-model="description" name="description" class="w-full form-control form-input form-input-bordered" />
                     </div>
                 </div>
             </div>
@@ -44,7 +45,6 @@
         name: 'EventModal',
         props: ['currentEvent', 'currentDate'],
         data() {
-            console.log(this.currentEvent);
             return {
                 title: this.currentEvent !== null ? this.currentEvent.event.title : '',
                 description: this.currentEvent !== null ? this.currentEvent.event.description : '',

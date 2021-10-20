@@ -41,6 +41,7 @@ class ToolServiceProvider extends ServiceProvider
 
             Nova::provideToScript([
                 'fullcalendar_locale' => config('nova-calendar-tool.fullcalendar_locale'),
+                'fullcalendar_tz' => config('nova-calendar-tool.fullcalendar_tz'),
             ]);
         });
     }
@@ -62,8 +63,8 @@ class ToolServiceProvider extends ServiceProvider
                 ->group(__DIR__.'/../routes/api.php');
 
         $this->commands([
-//            \Plank\NovaCalendarTool\Console\Commands\ImportEvents::class,
-//            \Plank\NovaCalendarTool\Console\Commands\ExportEvents::class
+            \Plank\NovaCalendarTool\Console\Commands\ImportEvents::class,
+            \Plank\NovaCalendarTool\Console\Commands\ExportEvents::class
         ]);
     }
 

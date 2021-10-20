@@ -23,6 +23,7 @@
     import dayGridPlugin from '@fullcalendar/daygrid';
     import timeGridPlugin from '@fullcalendar/timegrid';
     import interactionPlugin from '@fullcalendar/interaction';
+    import momentTimezonePlugin from '@fullcalendar/moment-timezone'
     import allLocales from '@fullcalendar/core/locales-all';
     import EventModal from './EventModal';
 
@@ -35,7 +36,8 @@
             return {
                 calendarOptions: {
                     events: '/nova-vendor/nova-calendar-tool/events',
-                    plugins: [ dayGridPlugin, timeGridPlugin, interactionPlugin ],
+                    plugins: [ dayGridPlugin, timeGridPlugin, interactionPlugin, momentTimezonePlugin],
+                    timeZone: Nova.config.fullcalendar_tz || 'local',
                     initialView: 'dayGridMonth',
                     locale: Nova.config.fullcalendar_locale || 'en',
                     dateClick: this.handleDateClick,
@@ -48,8 +50,7 @@
                     eventTimeFormat: {
                         hour: '2-digit',
                         minute: '2-digit',
-                        second: '2-digit',
-                        hour12: false
+                        hour12: true
                     },
                     timeFormat: 'H(:mm)'
                 },
@@ -60,10 +61,12 @@
         },
         methods: {
             handleDateClick(date) {
+                console.log(date);
                 this.showModal = true;
                 this.currentDate = date;
             },
             handleEventClick(event) {
+                console.log(event);
                 this.showModal = true;
                 this.currentEvent = event;
             },
