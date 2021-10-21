@@ -61,7 +61,6 @@
         },
         methods: {
             handleDateClick(date) {
-                console.log(date);
                 this.showModal = true;
                 this.currentDate = date;
             },

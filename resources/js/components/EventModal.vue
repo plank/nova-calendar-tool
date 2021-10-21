@@ -47,7 +47,7 @@
         data() {
             return {
                 title: this.currentEvent !== null ? this.currentEvent.event.title : '',
-                description: this.currentEvent !== null ? this.currentEvent.event.description : '',
+                description: this.currentEvent !== null ? this.currentEvent.event.extendedProps.description : '',
                 start: moment(this.currentEvent !== null ? this.currentEvent.event.start : this.currentDate.date).format('YYYY-MM-DD HH:mm:ss'),
                 end: this.currentEvent !== null ? moment(this.currentEvent.event.end).format('YYYY-MM-DD HH:mm:ss') : moment(this.currentDate.date).add(1, 'hour').format('YYYY-MM-DD HH:mm:ss')
             }
