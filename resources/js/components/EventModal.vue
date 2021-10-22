@@ -23,9 +23,17 @@
                         <label for="end" class="mb-2 text-80">End:</label>
                         <date-time-picker @change="changeEnd" v-model="end" name="end" class="w-full form-control form-input form-input-bordered" autocomplete="off" />
                     </div>
-                    <div class="border-b border-40 pb-4">
+                    <div class="border-b border-40 py-4">
                         <label for="description" class="mb-2 text-80 leading-tight">Description:</label>
-                        <textarea v-model="description" name="description" class="w-full form-control form-input form-input-bordered" />
+                        <quill-editor
+                            ref="myQuillEditor"
+                            name="description"
+                            v-model="description"
+                            :options="editorOption"
+                            @blur="onEditorBlur($event)"
+                            @focus="onEditorFocus($event)"
+                            @ready="onEditorReady($event)"
+                        />
                     </div>
                 </div>
             </div>
@@ -41,11 +49,21 @@
 </template>
 
 <script>
+    import { quillEditor } from 'vue-quill-editor'
+    import 'quill/dist/quill.core.css'
+    import 'quill/dist/quill.snow.css'
+    import 'quill/dist/quill.bubble.css'
     export default {
         name: 'EventModal',
+        components: {
+            quillEditor
+        },
         props: ['currentEvent', 'currentDate'],
         data() {
             return {
+                editorOption: {
+                // Some Quill options...
+                },
                 title: this.currentEvent !== null ? this.currentEvent.event.title : '',
                 description: this.currentEvent !== null ? this.currentEvent.event.extendedProps.description : '',
                 start: moment.tz(this.currentEvent !== null ? this.currentEvent.event.start : this.currentDate.date, Nova.config.fullcalendar_tz).format('YYYY-MM-DD HH:mm:ss'),
