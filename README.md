@@ -77,7 +77,7 @@ return [
     'calendar_id' => env('GOOGLE_CALENDAR_ID'),
 ];
 ```
-
+ 
 So next, you have to insert `GOOGLE_CALENDAR_ID=your_id` into the `.env` file (it's in the Google Calendar settings page) and the account credentials into the `storage/app/google-calendar/service-account-credentials.json` file (you can obtain it from Google API Console). Both of these things are explained [here](https://github.com/spatie/laravel-google-calendar#installation).
 
 ## Artisan Commands
